@@ -1,0 +1,8 @@
+django==4.2.7
+requests==2.31.0
+beautifulsoup4==4.12.2
+torch
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+# Add other dependencies as needed
+llama-cpp-python==0.2.90 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu 

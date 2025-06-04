@@ -1,0 +1,33 @@
+services:
+  chatbot:
+    build:
+      context: .
+    container_name: chatbot
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./prj/staticfiles:/app/staticfiles
+      - ./prj:/app
+    working_dir: /app
+
+    ports:
+      - "127.0.0.1:23231:8000"
+    depends_on:
+      db_23231:
+        condition: service_healthy
+
+  db_23231:
+    image: mysql
+    container_name: db_23231
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: chatbot_db
+      MYSQL_USER: django_user
+      MYSQL_PASSWORD: django_password
+    ports:
+      - "127.0.0.1:24216:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
