@@ -1,4 +1,4 @@
-# RAG-WebSystem
+# RAG-WebSystem – Mauritania Legal Chatbot
 
 **A Django-based web application integrating a Retrieval-Augmented Generation (RAG) pipeline with a locally hosted GGUF model and the Gemini API.**
 
